@@ -15,7 +15,7 @@ class DBHelper:
 		finally:
 			connection.close()
 
-	def add_nput(self, data):
+	def add_input(self, data):
 		connection = self.connect()
 		try:
 			query = "INSERT INTO crimes (description) VALUES('{}');".format(data)
@@ -32,7 +32,7 @@ class DBHelper:
 			with connection.cursor() as cursor:
 				cursor.execute(query)
 				connection.commit()
-			finally:
-				connection.close()
+		finally:
+			connection.close()
 
 
