@@ -9,7 +9,7 @@ DB = DBHelper()
 @app.route("/")
 def home():
 	try:
-		data = DB.get_all_imputs()
+		data = DB.get_all_inputs()
 		except Exception as e:
 			print e
 			data = None
@@ -34,5 +34,3 @@ def clear():
 
 if __name__=='__main__':
 	app.run()
-	
-
