@@ -1,58 +1,65 @@
-<html>
-	<head>
-		<style>
-		html {
-			font-family: "Helvetica";
-			background: white;
-			}
-		body {
-			background: lightgrey;
-			max-width: 900px;
-			margin: 0 auto;
-			}
-		#header {
-			padding-top: 5;
-			background: lightsteelblue;
-			}
-		#inner-header {
-			padding-left: 10;
-			}
-		#main   {
-			padding-left: 10;
-			}
-		input[type="text"],select {
-			color: grey;
-			border: 1px solid lightsteelblue;
-			height: 30px;
-			line-height: 15px;
-			margin: 2px 6px 16px 0px;
-			}
-		input[type="submit"]{ 
-			padding: 5px 10px 5px 10px;
-			color: black;
-			background: lightsteelblue;
-			border: none;
-			box-shadow: 1px 1px 1px #4C6E91;
-			}
-		input[type="submit"]:hover { 
-			background: steelblue;
-			}
-		</style>
-		<title>Crime Map</title>
-	</head>
-	<body>
-		<div id="header">
-			<h1>Crime Map</h1>
-		</div>
-		<div id="main">
-			<form action="/add" method="POST">
-				<input type="text" name="userinput">
-				<input type="submit" value="Submit" />
-			</form>
-			<a href="/clear">clear</a>
-			{% for userinput in data %}}
-				<p>{{userinput}}</p>
-			{% endfor %}
-		</div>
-	</body>
-</html>
+<!DOCTYPE html> 
+<html lang="en"> 
+  <head> 
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/style.css')}}" />
+
+    <script type="text/javascript" 
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGyq7oJj1fj9O5y-gzZRdOWfSWg-P0_KM"> 
+    </script> 
+  
+    <script type="text/javascript"> 
+      var map;
+      var marker;
+
+      function initialize() 
+      { 
+        var mapOptions = { center: new google.maps.LatLng(41.257160, -95.995102), zoom: 15 }; 
+       
+         map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);   
+         google.maps.event.addListener(map, 'click', function(event) {placeMarker(event.latLng);} ); 
+      }
+  
+        function placeMarker(location)
+        {   
+          if(marker)
+          {
+            marker.setPosition(location)
+          }
+          else
+          {
+            marker = new google.maps.Marker({position: location, map: map });
+          }
+          document.getElementById('latitude').value = location.lat();
+          document.getElementById('longitude').value = location.lng();
+
+           
+        }
+      
+
+    </script> 
+  </head> 
+    <body onload='initialize()'> 
+      <h1>Crime Map</h1>
+      <p>A map of recent criminal activity in the Omaha area.</p>
+    <div id="map-canvas"></div> 
+
+    <div id="newcrimeform">
+      <h2>Submit new crime</h2>
+      <form action="/submitcrime" method="POST">
+        <label for="category">Category</label>
+        <select name="category" id="category">
+          <option value="mugging">Mugging</option>
+          <option value="breakin">Break-in</option>
+        </select>
+        <label for="date">Date</label>
+        <input id="date" type="date" name="date">
+        <label for="latitude">Latitude</label>
+        <input id="latitude" type="text" name="latitude">
+        <label for="longitude">Longitude</label>
+        <input id="longitude" type="text" name="longitude">
+        <label for="description">Description</label>
+        <textarea name="description" id="description" placeholder=" A brief but detailed description of the crime" cols="35"></textarea>
+        <input type="submit" value="Submit">
+        </form></div>
+    </body> 
+</html> 
