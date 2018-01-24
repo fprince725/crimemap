@@ -4,7 +4,7 @@ from flask import request
 import dbconfig
 import json
 
-if dbconfig.test:
+if dbconfig.test == True:
 	from mockdbhelper import MockDBHelper as DBHelper
 else:
 	from dbhelper import DBHelper
