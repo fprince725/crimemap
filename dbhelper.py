@@ -53,14 +53,14 @@ class DBHelper:
 			with connection.cursor() as cursor:
 				cursor.execute(query)
 
-				named_crimes[]
+				named_crimes = []
 
 				for crime in cursor:
 					named_crime = {
 					'latitude': crime[0],
 					'longitude': crime[1],
-					'date': datetime.datetime.strftime(crime[2], "%Y-%m-%d")
-					'category': crime[3]
+					'date': datetime.datetime.strftime(crime[2], "%Y-%m-%d"),
+					'category': crime[3],
 					'description': crime[4]
 					}
 					named_crimes.append(named_crime)
