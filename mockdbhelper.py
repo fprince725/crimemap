@@ -11,7 +11,15 @@ class MockDBHelper:
 	def clear_all(self):
 		pass
 
-	def add_crimes(category, date, latitude, longitude, description):
+	def add_crimes(self, category, date, latitude, longitude, description):
 		pass
+
+	def get_all_crimes():
+		return [{ 'latitude': 41.257851, 
+    		'longitude': -95.986908, 
+    		'date': "2000-01-01", 
+    		'category': "mugging", 
+    		'description': "mock description" }] 
+
 
 		
