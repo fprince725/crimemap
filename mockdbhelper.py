@@ -15,11 +15,12 @@ class MockDBHelper:
 		pass
 
 	def get_all_crimes(self):
-		return [{ 'latitude': 41.257851, 
-    		'longitude': -95.986908, 
+		print("MockDBHelper")
+		return [{ 'latitude': 41.25936796982442, 
+    		'longitude': -95.98527431488037, 
     		'date': "2000-01-01", 
     		'category': "mugging", 
-    		'description': "mock description" }] 
+    		'description': "mock description"}]
 
 
 		

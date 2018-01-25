@@ -16,25 +16,7 @@ class DBHelper:
 		finally:
 			connection.close()
 
-	def add_input(self, data):
-		connection = self.connect()
-		try:
-			query = "INSERT INTO crimes (description) VALUES('{}');".format(data)
-			with connection.cursor() as cursor:
-				cursor.execute(query)
-				connection.commit()
-		finally:
-			connection.close()
-
-	def clear_all(self):
-		connection = self.connect()
-		try:
-			query = "DELETE FROM crimes;"
-			with connection.cursor() as cursor:
-				cursor.execute(query)
-				connection.commit()
-		finally:
-			connection.close()
+	
 
 	def add_crime(self, category, date, latitude, longitude, description):
 		connection = self.connect()
